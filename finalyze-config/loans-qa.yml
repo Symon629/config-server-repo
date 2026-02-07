@@ -1,0 +1,11 @@
+build:
+  version: "4.0"
+
+loans:
+  message: "Welcome to Finalyze loans related QA APIs "
+  contactDetails:
+    name: "Amaal Grega -"
+    email: "amaal@finalyze.com"
+  onCallSupport:
+    - (452) 456-2176
+    - (546) 764-8934

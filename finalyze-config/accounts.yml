@@ -1,0 +1,11 @@
+build:
+  version: 1.0.0
+
+accounts:
+  message: "Welcome to ShopBling! Your account has been successfully created."
+  contact-details:
+    supportEmail: "symon.asadul@gmail.com"
+    supportPhone: "+1234567890"
+  onCallSupport:
+    - 054123213
+    - 123123123
