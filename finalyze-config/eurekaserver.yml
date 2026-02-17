@@ -1,0 +1,67 @@
+# =============================================================================
+# EUREKA SERVER CONFIGURATION
+# =============================================================================
+# Eureka Server is a service registry for microservices architecture.
+# It allows services to register themselves and discover other services.
+# =============================================================================
+
+server:
+  # The port on which the Eureka Server will run
+  # Example: Eureka dashboard will be accessible at http://localhost:8070
+  port: 8070
+
+eureka:
+  # ---------------------------------------------------------------------------
+  # INSTANCE CONFIGURATION
+  # ---------------------------------------------------------------------------
+  # Configures how this Eureka Server instance identifies itself
+  instance:
+    # The hostname used to identify this Eureka Server instance
+    # Example: In a cluster, each server might have a unique hostname like:
+    #   - eureka-server-1.company.com
+    #   - eureka-server-2.company.com
+    # For local development, 'localhost' is sufficient
+    hostname: localhost
+
+  # ---------------------------------------------------------------------------
+  # CLIENT CONFIGURATION
+  # ---------------------------------------------------------------------------
+  # Even though this is a Eureka Server, it also has a built-in Eureka Client.
+  # These settings configure how the server behaves as a client.
+  client:
+    # fetchRegistry: Whether to fetch the registry from other Eureka Servers
+    # - true: Fetches registry (useful in clustered Eureka setup)
+    # - false: Does not fetch registry (standalone server)
+    # Example: Set to 'true' if you have multiple Eureka Servers that need
+    #          to replicate data between each other
+    fetchRegistry: false
+
+    # registerWithEureka: Whether to register this server with another Eureka Server
+    # - true: Registers itself (useful in clustered Eureka setup)
+    # - false: Does not register (standalone server)
+    # Example: In a 3-node Eureka cluster, each server would set this to 'true'
+    #          so they can discover each other
+    registerWithEureka: false
+
+    # serviceUrl: URLs of Eureka Servers to connect to
+    serviceUrl:
+      # defaultZone: The default URL(s) to communicate with Eureka Server(s)
+      # Uses Spring property placeholders ${...} to reference other config values
+      # Example resolved URL: http://localhost:8070/eureka/
+      #
+      # For a clustered setup, you might use:
+      #   defaultZone: http://eureka1:8070/eureka/,http://eureka2:8071/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+# =============================================================================
+# CONFIGURATION SUMMARY
+# =============================================================================
+# This is a STANDALONE Eureka Server configuration because:
+#   - fetchRegistry: false     → Not fetching from other servers
+#   - registerWithEureka: false → Not registering with other servers
+#
+# Microservices will register with this server at:
+#   http://localhost:8070/eureka/
+#
+# Eureka Dashboard (Web UI) available at:
+#   http://localhost:8070
+# =============================================================================
